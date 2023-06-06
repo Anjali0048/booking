@@ -1,30 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
-const EquipDetails = () => {
-
-  const [data,setData] = useState([]);
-
-    const getData = async () => {
-        try{
-          const {data} = await axios.get(`http://localhost:3001/api/labs/equip/${_id}`)
-          setData(data)
-        //   console.log(data)
-
-          const equip = data.equipments.map((item) => {
-            return {...item}
-          })
-          setEquip(equip)
-        //   console.log(equip)
-        }
-        catch(e){
-          console.log(e)
-        }
-    }
-
-    useEffect(() => {
-        getData();
-    },[])
+const EquipDetails = ({equipName,makeOfEquip,model,quantity}) => {
 
   return (
     <>
@@ -44,22 +22,22 @@ const EquipDetails = () => {
               <td
                 className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {/* {_id} */}
+                {equipName}
               </td>
               <td
                 className="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white"
               >
-                {/* {makeOfEquip} */}
+                {makeOfEquip}
               </td>
               <td
                 className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {/* {model} */}
+                {model}
               </td>
               <td
                 className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
               >
-                {/* {quantity} */}
+                {quantity}
               </td>
               <td
                 className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"

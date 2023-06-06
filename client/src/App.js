@@ -20,7 +20,7 @@ function App() {
         <Route exact path="/" element={<Home/>}/>
         <Route path="/login" element={<Login setLoginUser={setLoginUser}/>}/>
         <Route path="/signup" element={<Signup/>}/>
-        <Route path="/equipForm" element={<EquipForm/>}/>
+        <Route path="/equipForm/:_id" element={<EquipForm/>}/>
         <Route path='/equipDetail/:_id' element={<Equipments/>}/>
         <Route path='/labForm' element={<LabForm/>}/>
         <Route path='/labs' element={<Labs/>}/>

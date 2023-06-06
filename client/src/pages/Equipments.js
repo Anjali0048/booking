@@ -1,26 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import EquipDetails from '../components/EquipDetails'
 import axios from "axios"
-import { useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 const Equipments = () => {
 
     const [data,setData] = useState([]);
-    const [equip, setEquip] = useState([]);
-
+    const navigate = useNavigate();    
     const { _id } = useParams();
 
     const getData = async () => {
         try{
-          const {data} = await axios.get(`http://localhost:3001/api/labs/${_id}`)
+          const {data} = await axios.get(`http://localhost:3001/api/labs/equip/${_id}`)
           setData(data)
-        //   console.log(data)
-
-          const equip = data.equipments.map((item) => {
-            return {...item}
-          })
-          setEquip(equip)
-        //   console.log(equip)
+          // console.log(data)
         }
         catch(e){
           console.log(e)
@@ -31,9 +24,23 @@ const Equipments = () => {
         getData();
     },[])
 
+    const handleClick = (e) => {
+      e.preventDefault();
+      navigate(`/equipForm/${_id}`);
+    }
+
   return (
     <div>
-        
+        <div className="text-center md:text-left">
+  
+            <button className=" bg-blue-700 hover:bg-blue-900 px-4 py-2 text-white rounded text-xs tracking-wider"  
+              onClick={handleClick}
+            >
+              + Add Equipment
+            </button>
+
+        </div>
+
         <div className="container justify-center mx-auto flex flex-col">
   <div className="overflow-x-auto shadow-md sm:rounded-lg">
     <div className="inline-block min-w-full align-middle dark:bg-gray-800">
@@ -102,13 +109,11 @@ const Equipments = () => {
             </tr>
           </thead>
             {
-                equip.map((item) => {
+                data.map((item) => {
                     return <EquipDetails key={item._id} {...item}/>
                 })
             }
-            `${console.log(equip)}`
 
-            {/* <EquipDetails equip={equip}/> */}
         </table>
       </div>
     </div>

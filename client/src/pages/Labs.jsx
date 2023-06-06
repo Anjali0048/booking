@@ -12,7 +12,7 @@ const Labs = () => {
       try{
         const {data} = await axios.get("http://localhost:3001/api/labs")
         setData(data)
-        console.log(data)
+        // console.log(data)
       }catch(e){
         console.log(e)
       }

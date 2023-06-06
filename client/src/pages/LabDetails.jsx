@@ -7,6 +7,7 @@ const LabDetails = ({_id,labName,labNo,labIncharge,contact,email,department,pict
   const navigate = useNavigate();
   
   const handleClick = (e) => {
+    e.preventDefault();
     // console.log(_id)
     navigate(`/equipDetail/${_id}`);
   }
@@ -42,7 +43,7 @@ const LabDetails = ({_id,labName,labNo,labIncharge,contact,email,department,pict
         <button className="m-4 bg-blue-700 hover:bg-blue-900 px-4 py-2 text-white rounded text-xs tracking-wider"  
           onClick={handleClick}
         >
-          Book Now
+          Book Slots
         </button>
 
         </div>
